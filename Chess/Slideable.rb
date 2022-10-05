@@ -1,5 +1,5 @@
 module Slideable
-
+require "byebug"
     HORIZONTAL_DIRS = [
         [0, -1], # left [:dx, :dy]
         [0, 1], # right
@@ -25,13 +25,25 @@ module Slideable
 
       # should return an array of places a Piece can move to
       def moves
+
         # create an array to collect moves
         mvs = []
         # iterate over each of the directions in which a Slideable piece can move
-        horizontal_dirs.each do |direction|
-            until
+        self.move_dirs.each do |direction|
+          debugger
+            x, y = self.pos # x = 2 y = 2
+            until !x.between?(0, 7) || !y.between?(0, 7) #
+              debugger
+              x += direction.first # 2 + 0 = 2
+                y += direction.last
+                debugger# 2 + -1 = 1
+                if self.board[[x ,y]].is_a?(Null_Piece) #
+                    mvs << [x, y]
+                end
+            end
         end
-          # use the Piece subclass' move_dirs method to get this info
+        mvs
+          # use the              subclass' move_dirs method to get this info
           # for each direction, collect all possible moves in that direction
 
             # and add them to your moves array
@@ -65,5 +77,4 @@ module Slideable
         # return the final moves array
 
       end
-    end
 end

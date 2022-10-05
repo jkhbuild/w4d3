@@ -1,5 +1,5 @@
 class Piece
-    attr_accessor :color
+    attr_accessor :color, :pos, :board
     def initialize
         @color = :white
         @board = Board.new
@@ -11,7 +11,7 @@ class Piece
     end
 
     def to_s
-        self.symbol 
+        self.symbol
     end
 
     def empty

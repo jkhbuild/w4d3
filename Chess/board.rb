@@ -25,7 +25,7 @@ class Board
 
     end
 
-    def fill_board 
+    def fill_board
         #for testing only
         # self.board.map.with_index do |row, i|
         #     if !i.between?(2, 5)
@@ -45,19 +45,20 @@ class Board
         end
     end
 
-    private 
+    private
     def fill_back_rows
         back_row = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
 
         (0..7).each do |i1|
-            if !i1.between?(1, 6) 
+            if !i1.between?(1, 6)
                 back_row.each_with_index do |piece, i2|
                     self[[i1, i2]] = piece.new
+                    self[[i1, i2]].pos = [i1,i2]
                 end
             end
         end
     end
-        
+
     def fill_pawns
         self.board.each_with_index do |row, i1|
             row.length.times do |i2|
@@ -70,7 +71,7 @@ class Board
 
     def fill_null
           (0..7).each do |i1|
-            if i1.between?(2, 5) 
+            if i1.between?(2, 5)
                 self.board.each_with_index do |piece, i2|
                     self[[i1, i2]] = Null_Piece.instance
                 end
@@ -83,8 +84,10 @@ end
 
 b = Board.new
 b.fill_board
-b.print_board
-b.move_piece([1,1], [3,2])
-b.print_board
-b.move_piece([3,2], [4,5])
-b.print_board
+# b.print_board
+# b.move_piece([1,1], [3,2])
+# b.print_board
+# b.move_piece([3,2], [4,5])
+# b.print_board
+
+p b[[0, 0]].moves
