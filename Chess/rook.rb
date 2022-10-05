@@ -1,4 +1,5 @@
 class Rook < Piece
+    include Slideable
 
     def initialize
         super
@@ -8,5 +9,8 @@ class Rook < Piece
         "♜"
     end
 
-    
+    def move_dirs
+        horizontal_dirs
+    end
+
 end
