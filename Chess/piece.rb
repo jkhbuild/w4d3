@@ -6,8 +6,12 @@ class Piece
         @pos = pos
     end
 
+    def symbol
+
+    end
+
     def to_s
-        
+        self.symbol 
     end
 
     def empty

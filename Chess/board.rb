@@ -3,7 +3,7 @@ class Board
     attr_reader :board
 
     def initialize
-        @board = Array.new(8) { Array.new(8) } 
+        @board = Array.new(8) { Array.new(8) }
     end
 
     def [](pos)
@@ -25,14 +25,23 @@ class Board
     end
 
     def fill_board #for testing only
-        self.board.map.with_index do |row, i|
-            if !i.between?(2, 5)
-                (0..7).each do |j|
-                    row[j] = :P
+        # self.board.map.with_index do |row, i|
+        #     if !i.between?(2, 5)
+        #         (0..7).each do |j|
+        #             row[j] = :P
+        #         end
+        #     end
+        # end
+        [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
+        self.board.each_with_index do |row, i1|
+            row.length.times do |i2|
+                if i1 == 1 || i1 == 6
+                   self[i1, i2] = Pawn.new
                 end
             end
         end
     end
+
 
     def print_board # for testing only
         @board.each do |row|
