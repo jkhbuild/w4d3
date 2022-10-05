@@ -7,7 +7,7 @@ class Piece
     end
 
     def symbol
-
+        raise "no symbol"
     end
 
     def to_s

@@ -36,6 +36,7 @@ class Board
         # end
         self.fill_back_rows
         self.fill_pawns
+        self.fill_null
     end
 
     def print_board # for testing only
@@ -62,6 +63,16 @@ class Board
             row.length.times do |i2|
                 if i1 == 1 || i1 == 6
                    self[[i1, i2]] = Pawn.new
+                end
+            end
+        end
+    end
+
+    def fill_null
+          (0..7).each do |i1|
+            if i1.between?(2, 5) 
+                self.board.each_with_index do |piece, i2|
+                    self[[i1, i2]] = Null_Piece.instance
                 end
             end
         end
