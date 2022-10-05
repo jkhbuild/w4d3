@@ -1,4 +1,5 @@
 require "byebug"
+require_relative "require_rel"
 class Board
     attr_reader :board
 
@@ -24,7 +25,8 @@ class Board
 
     end
 
-    def fill_board #for testing only
+    def fill_board 
+        #for testing only
         # self.board.map.with_index do |row, i|
         #     if !i.between?(2, 5)
         #         (0..7).each do |j|
@@ -32,16 +34,9 @@ class Board
         #         end
         #     end
         # end
-        [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
-        self.board.each_with_index do |row, i1|
-            row.length.times do |i2|
-                if i1 == 1 || i1 == 6
-                   self[i1, i2] = Pawn.new
-                end
-            end
-        end
+        self.fill_back_rows
+        self.fill_pawns
     end
-
 
     def print_board # for testing only
         @board.each do |row|
@@ -49,6 +44,28 @@ class Board
         end
     end
 
+    private 
+    def fill_back_rows
+        back_row = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
+
+        (0..7).each do |i1|
+            if !i1.between?(1, 6) 
+                back_row.each_with_index do |piece, i2|
+                    self[[i1, i2]] = piece.new
+                end
+            end
+        end
+    end
+        
+    def fill_pawns
+        self.board.each_with_index do |row, i1|
+            row.length.times do |i2|
+                if i1 == 1 || i1 == 6
+                   self[[i1, i2]] = Pawn.new
+                end
+            end
+        end
+    end
 
 end
 
@@ -58,4 +75,5 @@ b.fill_board
 b.print_board
 b.move_piece([1,1], [3,2])
 b.print_board
-b.move_piece([4,4], [4,5])
+b.move_piece([3,2], [4,5])
+b.print_board

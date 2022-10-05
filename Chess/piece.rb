@@ -1,9 +1,9 @@
 class Piece
     attr_accessor :color
-    def initialize(pos)
+    def initialize
         @color = :white
         @board = Board.new
-        @pos = pos
+        @pos = nil
     end
 
     def symbol

@@ -1,11 +1,11 @@
 class Pawn < Piece
 
-    def initialize(pos)
+    def initialize
         super
     end
 
     def symbol
-        ♙
+        "♙"
     end
 
 end
