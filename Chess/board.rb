@@ -3,7 +3,7 @@ class Board
     attr_reader :board
 
     def initialize
-        @board = Array.new(8) { Array.new(8) { "_" } }
+        @board = Array.new(8) { Array.new(8) } 
     end
 
     def [](pos)
@@ -18,10 +18,9 @@ class Board
 
     def move_piece(start_pos, end_pos)
         raise "invalid position" if !end_pos.all? { |cord| cord.between?(0, 7)}
-        # debugger
-        raise "position is empty" if self.board[start_pos] == "_"
-    # debugger
-        self.board[start_pos], self.board[end_pos] = self.board[end_pos], self.board[start_pos]
+
+        raise "position is empty" if self[start_pos].nil?
+        self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
 
     end
 
@@ -49,3 +48,5 @@ b = Board.new
 b.fill_board
 b.print_board
 b.move_piece([1,1], [3,2])
+b.print_board
+b.move_piece([4,4], [4,5])
